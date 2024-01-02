@@ -30,6 +30,11 @@ class User extends Authenticatable
     public function isDokter(): bool{
         return $this->is_dokter;
     }
+
+    public function isPasien(): bool{
+        return $this->is_pasien;
+    }
+
     protected $fillable = [
         'name',
         'email',
