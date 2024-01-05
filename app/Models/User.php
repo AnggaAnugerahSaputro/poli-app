@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable //Implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -19,7 +19,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // public function canAccessFilament(\Filament\Panel $panel): bool{
+    // public function canAccessPanel(Panel $panel): bool
+    // {
     //     return true;
     // }
 
@@ -39,6 +40,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
+        'is_dokter',
+        'id_dokter',
     ];
 
     /**
@@ -60,4 +64,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function dokter(){
+        return $this->belongsTo(Dokter::class, 'id_dokter', 'id');
+    }
 }

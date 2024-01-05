@@ -9,5 +9,8 @@ class Poli extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama_poli', 'keterangan'];
+    protected $fillable =[
+        'nama_poli',
+        'keterangan'
+    ];
 }

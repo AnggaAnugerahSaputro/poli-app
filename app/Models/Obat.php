@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Obat extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_obat', 'kemasan', 'harga'];
+    protected $fillable = [
+        'nama_obat',
+        'kemasan',
+        'harga'
+    ];
 }
