@@ -44,6 +44,11 @@ class JadwalPeriksaResource extends Resource
 
             ]);
     }
+    public static function getIdDokter(): int
+    {
+        $data = auth()->user();
+        return $data->id_dokter;
+    }
 
     public static function table(Table $table): Table
     {

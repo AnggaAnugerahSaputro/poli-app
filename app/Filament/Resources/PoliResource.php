@@ -28,8 +28,8 @@ class PoliResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('nama_poli'),
-                        TextInput::make('keterangan'),
+                        Forms\Components\TextInput::make('nama_poli')->label('Nama Poli')->required(),
+                        Forms\Components\Textarea::make('keterangan')->label('Keterangan')->required(),
                     ])
                     ->columns(2),
             ]);
@@ -47,6 +47,7 @@ class PoliResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                // Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

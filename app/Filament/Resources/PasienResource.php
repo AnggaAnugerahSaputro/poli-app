@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Pasien;
+use App\Models\DaftarPoli;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
@@ -21,6 +22,9 @@ class PasienResource extends Resource
     protected static ?string $model = Pasien::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationLabel = 'Pasien';
+    protected static bool $create = false; // Menonaktifkan tombol Create
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -28,11 +32,11 @@ class PasienResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('nama'),
-                        TextInput::make('alamat'),
-                        TextInput::make('no_ktp'),
-                        TextInput::make('no_hp'),
-                        TextInput::make('no_rm'),
+                        TextInput::make('nama')->label('Nama')->required(),
+                        TextInput::make('alamat')->label('Alamat')->required(),
+                        TextInput::make('no_ktp')->label('No KTP')->required(),
+                        TextInput::make('no_hp')->label('NO HP')->required(),
+                        // TextInput::make('no_rm')->label('No Rm')->required(),
                     ])
                     ->columns(2),
             ]);
@@ -42,18 +46,32 @@ class PasienResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama'),
-                TextColumn::make('alamat'),
-                TextColumn::make('no_ktp'),
-                TextColumn::make('no_hp'),
-                TextColumn::make('no_rm'),
+                TextColumn::make('nama')->label('Nama'),
+                TextColumn::make('alamat')->label('Alamat'),
+                TextColumn::make('no_ktp')->label('No KTP'),
+                TextColumn::make('no_hp')->label('No HP'),
+                TextColumn::make('no_rm')->label('No RM'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make("Riwayat Periksa")->label("Riwayat Periksa")
+                    ->form(function (Pasien $record) {
+                        $daftarPoli = DaftarPoli::where('id_pasien', $record->id)->first();
+                        $keluhan = $daftarPoli ? $daftarPoli->keluhan : null;
+                        return [
+                            TextInput::make("Pasien")->label("Nama Pasien")
+                                ->default(fn(Pasien $record) => "{$record->nama}")
+                                ->readonly(),
+                                TextInput::make("keluhan")->label("Keluhan")
+                                ->default($keluhan)
+                                ->readonly(),
+                        ];
+                    })
+                    ->hidden(function (Pasien $record) {
+                        return !DaftarPoli::where('id_pasien', $record->id)->exists();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

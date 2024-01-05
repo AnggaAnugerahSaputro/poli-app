@@ -13,7 +13,7 @@ class DaftarPoliPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -21,7 +21,7 @@ class DaftarPoliPolicy
      */
     public function view(User $user, DaftarPoli $daftarPoli): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -29,7 +29,7 @@ class DaftarPoliPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -37,7 +37,7 @@ class DaftarPoliPolicy
      */
     public function update(User $user, DaftarPoli $daftarPoli): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -45,7 +45,7 @@ class DaftarPoliPolicy
      */
     public function delete(User $user, DaftarPoli $daftarPoli): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -53,7 +53,7 @@ class DaftarPoliPolicy
      */
     public function restore(User $user, DaftarPoli $daftarPoli): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 
     /**
@@ -61,6 +61,6 @@ class DaftarPoliPolicy
      */
     public function forceDelete(User $user, DaftarPoli $daftarPoli): bool
     {
-        return $user->isPasien();
+        return $user->isDokter();
     }
 }

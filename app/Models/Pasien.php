@@ -9,7 +9,13 @@ class Pasien extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'alamat', 'no_ktp', 'no_hp', 'no_rm'];
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'no_ktp',
+        'no_hp',
+        'no_rm'
+    ];
 
     public static function boot()
     {
