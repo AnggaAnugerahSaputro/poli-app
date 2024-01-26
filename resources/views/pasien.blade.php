@@ -15,20 +15,20 @@
             display: flex;
             flex-direction: column;
             font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: #fff;
         }
 
         .container {
             z-index: 1;
         }
 
-        .bg-light {
-            background-color: #f8f9fa;
-        }
-
         .card {
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: box-shadow 0.3s;
+            border-radius: 15px;
+            overflow: hidden;
         }
 
         .card:hover {
@@ -36,68 +36,84 @@
         }
 
         .card-header {
-            background-color: #3498db;
+            background-color: #2c3e50;
             color: #fff;
             font-weight: bold;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
         }
 
         .card-body {
-            padding: 20px;
+            padding: 30px;
         }
 
         .form-control {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            height: 50px;
+            font-size: 16px;
         }
 
         .btn-primary {
-            background-color: #3498db;
+            background-color: #e74c3c;
             border: none;
             width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            background-color: #217dbb;
+            background-color: #c0392b;
         }
 
         .background-blue {
-            background-color: #217dbb; /* Warna biru tua */
+            background: linear-gradient(135deg, #2980b9, #3498db);
             height: 100%;
             position: absolute;
             width: 100%;
             top: 0;
             left: 0;
             opacity: 0.8;
+            z-index: -1;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 
-<body class="bg-light">
+<body>
     <div class="background-blue"></div>
     <div class="container mt-5">
-        <div class="d-flex align-items-center justify-content-center mb-3">
-            <h2 class="nk-block-title fw-normal text-white">
-                Pesan Dokter
-            </h2>
-        </div>
+        <div class="title">Pesan Dokter</div>
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header d-flex align-items-center justify-content-center">Register a new account
-                    </div>
+                    <div class="card-header">Register a new account</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
-                                <input placeholder="Nama lengkap" class="form-control" type="text"
-                                    name="fullname" id="fullname" required>
-                                <input placeholder="NIK" class="form-control" type="text" name="nik"
-                                    id="nik" required>
-                                <input placeholder="Alamat" class="form-control " type="text"
-                                    name="alamat" id="alamat" required>
-                                <input placeholder="Nomer Hp" class="form-control" type="text"
-                                    name="phone" id="phone" required>
+                                <input placeholder="Nama lengkap" class="form-control" type="text" name="fullname"
+                                    id="fullname" required>
+                                <input placeholder="NIK" class="form-control" type="text" name="nik" id="nik" required>
+                                <input placeholder="Alamat" class="form-control " type="text" name="alamat" id="alamat"
+                                    required>
+                                <input placeholder="Nomer Hp" class="form-control" type="text" name="phone" id="phone"
+                                    required>
                             </div>
                             @if($errors->any())
                             <div class="alert alert-danger">
@@ -108,18 +124,15 @@
                                 </ul>
                             </div>
                             @endif
-                            <a href="loginpasien">
-                                <p class="text-white">I have already an account</p>
-                            </a>
                             <button type="submit" class="btn btn-primary">
                                 Register
                             </button>
                         </form>
+                        <p class="login-link"><a href="loginpasien" class="text-white">I have already an account</a></p>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
@@ -135,4 +148,4 @@
     });
 </script>
 
-
+</html>

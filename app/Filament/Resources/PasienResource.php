@@ -56,7 +56,7 @@ class PasienResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\Action::make("Riwayat Periksa")->label("Riwayat Periksa")
+                Tables\Actions\Action::make("Pasien")->label("Pasien")
                     ->form(function (Pasien $record) {
                         $daftarPoli = DaftarPoli::where('id_pasien', $record->id)->first();
                         $keluhan = $daftarPoli ? $daftarPoli->keluhan : null;

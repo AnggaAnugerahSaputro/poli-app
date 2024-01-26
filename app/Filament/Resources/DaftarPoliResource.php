@@ -46,7 +46,19 @@ class DaftarPoliResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-
+                        TextInput::make("id")
+                        ->default(fn(DaftarPoli $record) => $record->id)
+                        ->hidden(),
+                    TextInput::make("pasien.nama")
+                        ->default(fn(DaftarPoli $record) => "{$record->pasien->nama}")
+                        ->readonly(),
+                    DatePicker::make("tgl_periksa")->label("Tanggal Periksa")->default(now()),
+                    Textarea::make("catatan")->label("Catatan"),
+                    Select::make('obat')
+                        ->label('Obat')
+                        ->options(Obat::query()->pluck('nama_obat', 'id'))
+                        ->required()
+                        ->multiple(),
                     //     Select::make('id_pasien')
                     //         ->label('No Rm')
                     //         ->options($pasien)
@@ -115,7 +127,7 @@ class DaftarPoliResource extends Resource
                             'id_daftar_poli' => $record->id,
                             'tgl_periksa' => now(),
                             'catatan' => $catatan,
-                            'biaya_periksa' => 155000
+                            'biaya_periksa' => 165000
                         ]);
                         $periksa->save();
                     })

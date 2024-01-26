@@ -17,7 +17,6 @@ return new class extends Migration
             $table->enum('hari', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            // Definisi kunci asing
             $table->foreign('id_dokter')->references('id')->on('dokters')->onDelete('cascade');
 
             $table->timestamps();
