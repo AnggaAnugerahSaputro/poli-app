@@ -13,8 +13,8 @@ class Pasien extends Model
         'nama',
         'alamat',
         'no_ktp',
-        'no_hp',
-        'no_rm'
+        'no_hp'
+        // 'no_rm'
     ];
 
     public static function boot()
@@ -34,5 +34,10 @@ class Pasien extends Model
             // Format nomor Rekam Medis
             $pasien->no_rm = now()->format('Ym') . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
         });
+    }
+
+    public function periksa()
+    {
+        return $this->belongsTo(Periksa::class, 'id_daftar_poli', 'id');
     }
 }

@@ -27,7 +27,7 @@ class PeriksaResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                      
+                      //
                     ])
                     ->columns(2),
             ]);
@@ -37,7 +37,7 @@ class PeriksaResource extends Resource
     {
         return $table
             ->columns([
-
+                //
             ])
             ->filters([
                 //

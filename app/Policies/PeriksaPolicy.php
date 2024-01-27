@@ -13,7 +13,8 @@ class PeriksaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -21,7 +22,8 @@ class PeriksaPolicy
      */
     public function view(User $user, Periksa $periksa): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -29,7 +31,8 @@ class PeriksaPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -37,7 +40,8 @@ class PeriksaPolicy
      */
     public function update(User $user, Periksa $periksa): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -45,7 +49,8 @@ class PeriksaPolicy
      */
     public function delete(User $user, Periksa $periksa): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -53,7 +58,8 @@ class PeriksaPolicy
      */
     public function restore(User $user, Periksa $periksa): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 
     /**
@@ -61,6 +67,7 @@ class PeriksaPolicy
      */
     public function forceDelete(User $user, Periksa $periksa): bool
     {
-        return $user->isPasien();
+        // return $user->isAdmin();
+        return false;
     }
 }

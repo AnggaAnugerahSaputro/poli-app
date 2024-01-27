@@ -27,6 +27,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pasiens');
+        // Schema::dropIfExists('pasiens');
+        Schema::table('pasiens', function (Blueprint $table) {
+            $table->dropColumn('no_rm');
+        });
     }
 };
