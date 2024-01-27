@@ -30,84 +30,25 @@ class JadwalPeriksaResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-collection';
     protected static ?int $navigationSort = 1;
 
-    // public static function form(Form $form): Form
-    // {
-    //     $dokter=Dokter::pluck('nama','id')->toArray();
-    //     return $form
-    //         ->schema([
-
-    //                 Select::make('id_dokter')
-    //                 ->label('Dokter')
-    //                 ->options($dokter)
-    //                 ->required(),
-    //                 Select::make('hari')
-    //                     ->label('Hari')
-    //                     ->options(['senin' => 'Senin', 'selasa' => 'Selasa', 'rabu' => 'Rabu', 'kamis' => 'Kamis', 'jumat' => 'Jumat', 'sabtu' => 'Sabtu'])
-    //                     ->required(),
-    //                 TimePicker::make('jam_mulai')->label('Jam Mulai')->required(),
-    //                 TimePicker::make('jam_selesai')->label('Jam Selesai')->required(),
-    //                 // Toggle::make('aktif')->default(true),
-
-
-    //         ]);
-    // }
-    // public static function getIdDokter(): int
-    // {
-    //     $data = auth()->user();
-    //     return $data->id_dokter;
-    // }
-
-    // public static function table(Table $table): Table
-    // {
-    //     // if (auth()->check()) {
-    //     return $table
-    //     // ->query(fn () => JadwalPeriksa::where('id_dokter', self::getIdDokter()))
-    //     // ->query(function () {
-    //     //     return JadwalPeriksa::where('id_dokter', self::getIdDokter());
-    //     // })
-    //         ->columns([
-    //             TextColumn::make('dokter.nama'),
-    //             TextColumn::make('hari'),
-    //             TextColumn::make('jam_mulai'),
-    //             TextColumn::make('jam_selesai'),
-    //             ToggleColumn::make('is_active')->label('Status Jadwal')
-    //             // Toggle::make('aktif'),
-    //         ])
-    //         ->filters([
-    //             //
-    //         ])
-    //         ->actions([
-    //             Tables\Actions\EditAction::make(),
-    //             Tables\Actions\DeleteAction::make(),
-    //         ])
-    //         ->bulkActions([
-    //             Tables\Actions\DeleteBulkAction::make(),
-    //         ]);
-    //     // }
-    // }
-
     public static function form(Form $form): Form
     {
-        $dokter = Dokter::pluck('nama', 'id')->toArray();
+        $dokter=Dokter::pluck('nama','id')->toArray();
         return $form
             ->schema([
-                Select::make('hari')
-                    ->label('Hari')
-                    ->options([
-                        'senin' => 'Senin',
-                        'selasa' => 'Selasa',
-                        'rabu' => 'Rabu',
-                        'kamis' => 'Kamis',
-                        'jumat' => 'Jumat',
-                        'sabtu' => 'Sabtu',
-                    ])
-                    ->required(),
-                TimePicker::make('jam_mulai')
-                    ->label('Jam Mulai')
-                    ->required(),
-                TimePicker::make('jam_selesai')
-                    ->label('Jam Selesai')
-                    ->required(),
+
+                    // Select::make('id_dokter')
+                    // ->label('Dokter')
+                    // ->options($dokter)
+                    // ->required(),
+                    Select::make('hari')
+                        ->label('Hari')
+                        ->options(['senin' => 'Senin', 'selasa' => 'Selasa', 'rabu' => 'Rabu', 'kamis' => 'Kamis', 'jumat' => 'Jumat', 'sabtu' => 'Sabtu'])
+                        ->required(),
+                    TimePicker::make('jam_mulai')->label('Jam Mulai')->required(),
+                    TimePicker::make('jam_selesai')->label('Jam Selesai')->required(),
+                    // Toggle::make('aktif')->default(true),
+
+
             ]);
     }
     public static function getIdDokter(): int
@@ -121,23 +62,28 @@ class JadwalPeriksaResource extends Resource
         // if (auth()->check()) {
         return $table
         // ->query(fn () => JadwalPeriksa::where('id_dokter', self::getIdDokter()))
+        // ->query(function () {
+        //     return JadwalPeriksa::where('id_dokter', self::getIdDokter());
+        // })
             ->columns([
                 TextColumn::make('dokter.nama'),
                 TextColumn::make('hari'),
                 TextColumn::make('jam_mulai'),
                 TextColumn::make('jam_selesai'),
                 ToggleColumn::make('is_active')->label('Status Jadwal')
+                // Toggle::make('aktif'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-        
+        // }
     }
 
 

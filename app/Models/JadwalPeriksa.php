@@ -71,6 +71,7 @@ class JadwalPeriksa extends Model
                 $model->is_active = true;
             }
         });
+
         static::updating(function ($jadwalPeriksa) {
             if ($jadwalPeriksa->is_active) {
                 self::where('id_dokter', $jadwalPeriksa->id_dokter)
@@ -79,4 +80,6 @@ class JadwalPeriksa extends Model
             }
         });
     }
+
+
 }

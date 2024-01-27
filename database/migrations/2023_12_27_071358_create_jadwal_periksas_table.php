@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->foreign('id_dokter')->references('id')->on('dokters')->onDelete('cascade');
+            $table->boolean('is_active')->nullable()->default(1);
 
             $table->timestamps();
         });
